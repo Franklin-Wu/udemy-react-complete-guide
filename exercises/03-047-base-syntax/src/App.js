@@ -39,8 +39,8 @@ class App extends Component {
 
     return (
       <div className="App">
-        <UserOutput />
-        <UserOutput />
+        <UserOutput username='Horatio'/>
+        <UserOutput username={this.state.username}/>
         <UserInput
           onChange={this.inputChangeHandler}
           style={style}
