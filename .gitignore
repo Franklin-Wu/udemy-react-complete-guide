@@ -1,3 +1,4 @@
 .DS_STORE
 package-lock.json
+assets/
 node_modules/
