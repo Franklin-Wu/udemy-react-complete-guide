@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import ValidationComponent from './ValidationComponent/ValidationComponent';
 
 /*
 01. Create an input field (in App component) with a change listener which outputs the length of the entered text below it (e.g. in a paragraph).
@@ -22,6 +23,7 @@ class App extends Component {
         <p>
           {this.state.inputTextLength}
         </p>
+        <ValidationComponent textLength={this.state.inputTextLength}/>
       </div>
     );
   }
