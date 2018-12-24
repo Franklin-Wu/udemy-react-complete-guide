@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import CharComponent from './CharComponent/CharComponent';
 import ValidationComponent from './ValidationComponent/ValidationComponent';
 
 /*
@@ -12,18 +13,34 @@ import ValidationComponent from './ValidationComponent/ValidationComponent';
 */
 
 class App extends Component {
+  static textInputId = 'textInput';
+
   state = {
-    inputTextLength: 0,
+    inputText: '',
   };
+
+  onClick(index) {
+    const newInputText = this.state.inputText.slice(0, index)
+      + this.state.inputText.slice(index + 1, this.state.inputText.length);
+    document.getElementById(App.textInputId).value = newInputText;
+    this.setState({inputText: newInputText});
+  }
 
   render() {
     return (
       <div className="App">
-        <input onChange={(event) => {this.setState({inputTextLength: event.target.value.length})}}/>
+        <input id={App.textInputId} onChange={
+          (event) => {this.setState({inputText: event.target.value})}
+        }/>
         <p>
-          {this.state.inputTextLength}
+          {this.state.inputText.length}
         </p>
-        <ValidationComponent textLength={this.state.inputTextLength}/>
+        {[...this.state.inputText].map((char, index) => {
+          return <CharComponent char={char} key={index} onClick={
+            () => {this.onClick(index);}
+          }/>
+        })}
+        <ValidationComponent textLength={this.state.inputText.length}/>
       </div>
     );
   }
