@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import CharComponent from './CharComponent/CharComponent';
-import ValidationComponent from './ValidationComponent/ValidationComponent';
+import Char from './Char/Char';
+import Validation from './Validation/Validation';
 
 /*
 01. Create an input field (in App component) with a change listener which outputs the length of the entered text below it (e.g. in a paragraph).
@@ -37,11 +37,11 @@ class App extends Component {
           {this.state.inputText.length}
         </p>
         {[...this.state.inputText].map((char, index) => {
-          return <CharComponent char={char} key={index} onClick={
+          return <Char char={char} key={index} onClick={
             () => {this.onClick(index);}
           }/>
         })}
-        <ValidationComponent textLength={this.state.inputText.length}/>
+        <Validation textLength={this.state.inputText.length}/>
       </div>
     );
   }
