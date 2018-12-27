@@ -13,25 +13,26 @@ import ValidationComponent from './ValidationComponent/ValidationComponent';
 */
 
 class App extends Component {
-  static textInputId = 'textInput';
-
   state = {
     inputText: '',
   };
 
   onClick(index) {
-    const newInputText = this.state.inputText.slice(0, index)
-      + this.state.inputText.slice(index + 1, this.state.inputText.length);
-    document.getElementById(App.textInputId).value = newInputText;
+    const newInputTextArray = [...this.state.inputText];
+    newInputTextArray.splice(index, 1);
+    const newInputText = newInputTextArray.join('');
     this.setState({inputText: newInputText});
   }
 
   render() {
     return (
       <div className="App">
-        <input id={App.textInputId} onChange={
-          (event) => {this.setState({inputText: event.target.value})}
-        }/>
+        <input
+          onChange={
+            (event) => {this.setState({inputText: event.target.value})}
+          }
+          value={this.state.inputText}
+        />
         <p>
           {this.state.inputText.length}
         </p>
