@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { Link, Route, Switch } from 'react-router-dom';
 
+import Course from '../Course/Course';
 import './Courses.css';
 
 class Courses extends Component {
@@ -15,13 +17,38 @@ class Courses extends Component {
         return (
             <div>
                 <h1>Amazing Udemy Courses</h1>
-                <section className="Courses">
+                <Switch>
                     {
                         this.state.courses.map( course => {
-                            return <article className="Course" key={course.id}>{course.title}</article>;
-                        } )
+                            return (
+                                <Route
+                                    path={this.props.match.url + "/Course/:id"}
+                                    component={Course}
+                                    key={course.id}
+                                />
+                            )
+                        })
                     }
-                </section>
+                    <Route render={() => {
+                        return (
+                            <section className="Courses">
+                                {
+                                    this.state.courses.map( course => {
+                                        return (
+                                            <div key={course.id}>
+                                                <article className="Courses">
+                                                    <Link to={this.props.match.url + "/Course/" + course.id}>
+                                                        {course.title}
+                                                    </Link>
+                                                </article>
+                                            </div>
+                                        );
+                                    })
+                                }
+                            </section>
+                        )
+                    }}/>
+                </Switch>
             </div>
         );
     }

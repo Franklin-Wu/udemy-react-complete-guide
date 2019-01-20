@@ -37,8 +37,8 @@ class App extends Component {
               </ul>
             </nav>
           </header>
-          <Route path="/Users" component={Users}></Route>
-          <Route path="/Courses" component={Courses}></Route>
+          <Route path="/Users" component={Users}/>
+          <Route path="/Courses" component={Courses}/>
         </div>
       </BrowserRouter>
     );
