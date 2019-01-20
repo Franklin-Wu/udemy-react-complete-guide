@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Link, Route } from 'react-router-dom';
+import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 
 import './App.css';
 
 import Courses from './containers/Courses/Courses';
 import Users from './containers/Users/Users';
+import Error from './Error';
 
 /*
 01. Add Routes to load "Users" and "Courses" on different pages (by entering a URL, without Links)
@@ -37,8 +38,12 @@ class App extends Component {
               </ul>
             </nav>
           </header>
-          <Route path="/Users" component={Users}/>
-          <Route path="/Courses" component={Courses}/>
+          <Switch>
+            <Route path="/Users" component={Users}/>
+            <Route path="/Courses" component={Courses}/>
+            <Route path="/" exact/>
+            <Route component={Error}/>
+          </Switch>
         </div>
       </BrowserRouter>
     );
