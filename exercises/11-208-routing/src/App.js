@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Link, Redirect, Route, Switch } from 'react-router-dom';
 
 import './App.css';
 
@@ -39,6 +39,7 @@ class App extends Component {
             </nav>
           </header>
           <Switch>
+            <Redirect from="/All-Courses" to="/Courses"/>
             <Route path="/Users" component={Users}/>
             <Route path="/Courses" component={Courses}/>
             <Route path="/" exact/>
