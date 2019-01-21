@@ -3,7 +3,7 @@ import React from 'react';
 const error = () => {
     return (
         <p>
-            Oops! 404. You've reached this page in error.
+            <h1>Oops! 404. You've reached this page in error.</h1>
         </p>
     );
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Route, Switch } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 
 import Course from '../Course/Course';
 import './Courses.css';
@@ -17,41 +17,28 @@ class Courses extends Component {
         return (
             <div>
                 <h1>Amazing Udemy Courses</h1>
-                <Switch>
+                <section className='Courses'>
                     {
                         this.state.courses.map( course => {
                             return (
-                                <Route
-                                    path={this.props.match.url + '/Course/:id'}
-                                    component={Course}
-                                    key={course.id}
-                                />
-                            )
+                                <div key={course.id}>
+                                    <article className='Courses'>
+                                        <Link to={{
+                                                pathname: this.props.match.url + '/' + course.id,
+                                                search: 'title=' + course.title,
+                                            }}>
+                                            {course.title}
+                                        </Link>
+                                    </article>
+                                </div>
+                            );
                         })
                     }
-                    <Route render={() => {
-                        return (
-                            <section className='Courses'>
-                                {
-                                    this.state.courses.map( course => {
-                                        return (
-                                            <div key={course.id}>
-                                                <article className='Courses'>
-                                                    <Link to={{
-                                                            pathname: this.props.match.url + '/Course/' + course.id,
-                                                            search: 'title=' + course.title,
-                                                        }}>
-                                                        {course.title}
-                                                    </Link>
-                                                </article>
-                                            </div>
-                                        );
-                                    })
-                                }
-                            </section>
-                        )
-                    }}/>
-                </Switch>
+                </section>
+                <Route
+                    path={this.props.match.url + '/:id'}
+                    component={Course}
+                />
             </div>
         );
     }
